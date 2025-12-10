@@ -3,7 +3,7 @@ exibir();
 
 /*Cadastrar Salário */
 document.getElementById("casl").addEventListener("click", function () {
-    var salario = parseFloat(document.getElementById('salario').value).toFixed(2)
+    var salario = document.getElementById("salario").value.trim();
     salario = salario.replace(',', '.');
     salario = parseFloat(salario);
 
@@ -16,7 +16,7 @@ document.getElementById("casl").addEventListener("click", function () {
         return
     }
     salario = salario.toFixed(2);
-    
+
     localStorage.setItem("salario", salario);
     alert("Salário cadastrado.");
     document.getElementById("salario").value = "";
@@ -68,6 +68,9 @@ function exibir() {
         li.textContent = 'Data: ' + listaDespesas[i].data + ' Nome: ' + listaDespesas[i].nome + ' Valor: R$' + listaDespesas[i].valor
         output.appendChild(li)
     }
+
+    output.style.listStyleType = "none";
+
 }
 
 function resumo() {
@@ -86,13 +89,19 @@ function resumo() {
     let saldoFinal = salario - totalDespesas;
 
     let p1 = document.createElement('p');
-    p1.textContent = "Salário: R$ " + salario.toFixed(2); 
+    p1.textContent = "Salário: R$ " + salario.toFixed(2);
 
     let p2 = document.createElement('p');
     p2.textContent = "Total de Despesas: R$ " + totalDespesas.toFixed(2);
 
     let p3 = document.createElement('p');
     p3.textContent = "Saldo Final: R$ " + saldoFinal.toFixed(2);
+    
+    if (saldoFinal >= 0) {
+        p3.style.color = "green";
+    } else {
+        p3.style.color = "red";
+    }
 
     resumo.appendChild(p1);
     resumo.appendChild(p2);
@@ -130,3 +139,5 @@ function limpar() {
     exibir();
     resumo();
 }
+
+
