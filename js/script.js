@@ -3,7 +3,9 @@ exibir();
 
 /*Cadastrar Salário */
 document.getElementById("casl").addEventListener("click", function () {
-    var salario = document.getElementById("salario").value;
+    var salario = parseFloat(document.getElementById('salario').value).toFixed(2)
+    salario = salario.replace(',', '.');
+    salario = parseFloat(salario);
 
     if (salario === "") {
         alert("Digite um salário!");
@@ -13,6 +15,8 @@ document.getElementById("casl").addEventListener("click", function () {
         alert("Digite apenas números.")
         return
     }
+    salario = salario.toFixed(2);
+    
     localStorage.setItem("salario", salario);
     alert("Salário cadastrado.");
     document.getElementById("salario").value = "";
@@ -31,6 +35,8 @@ document.getElementById("formDespesas").addEventListener("submit", function (eve
     var nome = document.getElementById("nome").value
     var data = document.getElementById("data").value
     var valor = document.getElementById("valor").value
+
+    valor = valor.replace(',', '.');
 
     if (data === "" || nome === "" || isNaN(valor) || valor === "") {
         alert("Preencha todos os campos de modo correto.");
@@ -72,6 +78,7 @@ function resumo() {
     var listaDespesas = JSON.parse(localStorage.getItem("lista")) || []
     var totalDespesas = 0;
 
+
     for (let i = 0; i < listaDespesas.length; i++) {
         totalDespesas += parseFloat(listaDespesas[i].valor);
     }
@@ -79,7 +86,7 @@ function resumo() {
     let saldoFinal = salario - totalDespesas;
 
     let p1 = document.createElement('p');
-    p1.textContent = "Salário: R$ " + salario.toFixed(2);
+    p1.textContent = "Salário: R$ " + salario.toFixed(2); 
 
     let p2 = document.createElement('p');
     p2.textContent = "Total de Despesas: R$ " + totalDespesas.toFixed(2);
@@ -117,9 +124,9 @@ function limpar() {
     localStorage.removeItem('lista');
 
     document.getElementById("output").innerHTML = "";
-    document.getElementById("resumo").innerHTML = ""; 
+    document.getElementById("resumo").innerHTML = "";
 
-   
+
     exibir();
     resumo();
 }
