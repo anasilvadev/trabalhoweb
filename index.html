@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+    <div id=cadastrosal>
+    <h1>Cadastro de salário</h1>
+    <label for="salario">Salario</label>
+    <input type="text" id="salario" placeholder="Ex: 1518" required>
+    <br><br>
+    <button id="casl">Cadastrar Salário</button>
+   </div>
+
+    <div id=formulario>
+    <form id="formDespesas">
+        <h1>Cadastro de despesas</h1>
+        <label for="datalabel">Data:</label>
+        <input type="date" id="data" required><br>
+        <label for="nomelabel">Nome:</label>
+        <input type="text" id="nome" required><br>
+        <label for="valorlabel">Valor:</label>
+        <input type="text" id="valor" required><br>
+
+        <button type="submit">Adicionar</button>
+    </form>
+    </div>
+
+    <div id="listaded">
+    <h3>Listagem de despesas</h3>
+    <ul id="output"></ul>
+    <input type="button" value="Deletar todas" onclick="deletarTodas()">
+    <input type="button" value="Deletar" onclick="deletar()">
+    </div>
+
+    <div id=resumo>
+    <h3>Resumo</h3>
+    <div id="resumo"></div>
+    <input type="button" value="Limpar" onclick="limpar()">
+    </div>
+
+    <script type="text/javascript" src="js/script.js"></script>
+</body>
+
+</html>
